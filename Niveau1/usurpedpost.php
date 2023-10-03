@@ -43,7 +43,11 @@ session_start();
                     /**
                      * BD
                      */
-                    $mysqli = new mysqli("localhost", "root", "root", "socialnetwork_tests");
+                    /**
+                    * Etape 2: se connecter à la base de donnée
+                    */
+                    include("BDD.php");
+                    // $mysqli = new mysqli("localhost", "root", "root", "socialnetwork_tests");
                     /**
                      * Récupération de la liste des auteurs
                      */
@@ -69,8 +73,8 @@ session_start();
                         // observez le résultat de cette ligne de débug (vous l'effacerez ensuite)
                         echo "<pre>" . print_r($_POST, 1) . "</pre>";
                         // et complétez le code ci dessous en remplaçant les ???
-                        $authorId = $_POST['???'];
-                        $postContent = $_POST['???'];
+                        $authorId = $_POST['id'];
+                        $postContent = $_POST['content'];
 
 
                         //Etape 3 : Petite sécurité
@@ -78,15 +82,15 @@ session_start();
                         $authorId = intval($mysqli->real_escape_string($authorId));
                         $postContent = $mysqli->real_escape_string($postContent);
                         //Etape 4 : construction de la requete
-                        $lInstructionSql = "INSERT INTO posts "
-                                . "(id, user_id, content, created, permalink, post_id) "
-                                . "VALUES (NULL, "
-                                . $authorId . ", "
+                        $lInstructionSql = "
+                            INSERT INTO posts (id, user_id, content, created, parent_id),
+                            VALUES (1, 5, '#politique étrangère Joe Biden, le président des Américains', '2020-02-05 18:19:12', NULL),
+                            WHERE posts.posts_id='$authorId',
                                 . "'" . $postContent . "', "
                                 . "NOW(), "
                                 . "'', "
                                 . "NULL);"
-                                ;
+                                ";
                         echo $lInstructionSql;
                         // Etape 5 : execution
                         $ok = $mysqli->query($lInstructionSql);
