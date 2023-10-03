@@ -32,7 +32,7 @@ session_start();
                         echo "<pre>" . print_r($_POST, 1) . "</pre>";
                         // et complétez le code ci dessous en remplaçant les ???
                         $emailAVerifier = $_POST['email'];
-                        $passwdAVerifier = $_POST['motdepasse'];
+                        $passwdAVerifier = $_POST['motpasse'];
                         
 
                         //Etape 3 : Ouvrir une connexion avec la base de donnée.
