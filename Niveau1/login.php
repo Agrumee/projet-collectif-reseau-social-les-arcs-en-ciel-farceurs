@@ -55,10 +55,7 @@ session_start();
                         $user = $res->fetch_assoc();
                         if ( ! $user OR $user["password"] != $passwdAVerifier)
                         {
-                            echo $user["password"];
-                            echo $passwdAVerifier;
                             echo "La connexion a échouée. ";
-                            
                         } else
                         {
                             echo "Votre connexion est un succès : " . $user['alias'] . ".";
