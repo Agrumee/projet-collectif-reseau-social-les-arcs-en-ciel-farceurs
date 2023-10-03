@@ -32,7 +32,7 @@ session_start();
                         echo "<pre>" . print_r($_POST, 1) . "</pre>";
                         // et complétez le code ci dessous en remplaçant les ???
                         $emailAVerifier = $_POST['email'];
-                        $passwdAVerifier = $_POST['motdepasse'];
+                        $passwdAVerifier = $_POST['motpasse'];
                         
 
                         //Etape 3 : Ouvrir une connexion avec la base de donnée.
@@ -55,6 +55,8 @@ session_start();
                         $user = $res->fetch_assoc();
                         if ( ! $user OR $user["password"] != $passwdAVerifier)
                         {
+                            echo $user["password"];
+                            echo $passwdAVerifier;
                             echo "La connexion a échouée. ";
                             
                         } else
@@ -67,7 +69,7 @@ session_start();
                     }
                     ?>                     
                     <form action="login.php" method="post">
-                        <!-- <input type='hidden'name='???' value='achanger'>-->
+                        <input type='hidden'name='???' value='achanger'>
                         <dl>
                             <dt><label for='email'>E-Mail</label></dt>
                             <dd><input type='email'name='email'></dd>
