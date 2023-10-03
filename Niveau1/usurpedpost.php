@@ -85,8 +85,8 @@ session_start();
                         $lInstructionSql = "
                             INSERT INTO posts (id, user_id, content, created, parent_id),
                             VALUES (1, 5, '#politique étrangère Joe Biden, le président des Américains', '2020-02-05 18:19:12', NULL),
-                            WHERE posts.posts_id='$authorId',
-                                . "'" . $postContent . "', "
+                            WHERE posts.users_id='$authorId',
+                            WHERE posts.posts.content='$postContent',
                                 . "NOW(), "
                                 . "'', "
                                 . "NULL);"
