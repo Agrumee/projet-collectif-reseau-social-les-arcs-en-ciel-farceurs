@@ -31,7 +31,7 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $user = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                echo "<pre>" . print_r($user, 1) . "</pre>";
+                // echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
@@ -73,31 +73,28 @@
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  * A vous de retrouver comment faire la boucle while de parcours...
                  */
-                // while ($post = $lesInformations->fetch_assoc())
-                // {
 
-                //     echo "<pre>" . print_r($post, 1) . "</pre>";
+
+          
+                while ($post = $lesInformations->fetch_assoc())
+                {
+                    // echo "<pre>" . print_r($post, 1) . "</pre>";
                 ?>   
                 <article>
                     <h3>
-                        <time datetime='2020-02-01 11:12:13' >31 février 2010 à 11h12</time>
+                        <time datetime='2020-02-01 11:12:13' ><?php echo $post['created']; ?></time>
                     </h3>
-                    <address><?php echo ("Par " . $post['author_name'] )?></address>
+                    <address><?php echo ("Par " . $post['author_name'] );?></address>
                     <div>
-                        <p>Ceci est un </p>
-                        <p>Ceci est un autre paragraphe</p>
-                        <p>... de toutes manières il faut supprimer cet 
-                            article et le remplacer par des informations en 
-                            provenance de la base de donnée</p>
+                        <p><?php echo $post['content']; ?></p>
                     </div>                                            
                     <footer>
-                        <small><?php echo( "♥ " . $post['like_number']) ?></small>
-                        <a href="">#lorem</a>,
-                        <a href="">#piscitur</a>,
+                        <small><?php echo( "♥ " . $post['like_number']); ?></small>
+                        <a href=""><?php echo ( "#" . $post['taglist']); ?></a>,
                     </footer>
                 </article>
                 <?php
-                // }
+                }
                 // et de pas oublier de fermer ici vote while
                 ?>
 
