@@ -1,53 +1,46 @@
 <!doctype html>
 <html lang="fr">
 
-    <?php include("head.php"); ?>
-    <title>ReSoC - Mur</title> 
+<?php include("head.php"); ?>
+<title>ReSoC - Mur</title>
 
-    <body>
-        <?php include("header.php"); ?>
+<body>
+    <?php include("header.php"); ?>
 
-        <div id="wrapper">
-            <?php
-            /**
-             * Etape 1: Le mur concerne un utilisateur en particulier
-             * La première étape est donc de trouver quel est l'id de l'utilisateur
-             * Celui ci est indiqué en parametre GET de la page sous la forme user_id=...
-             * Documentation : https://www.php.net/manual/fr/reserved.variables.get.php
-             * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
-             */
-            $userId =intval($_GET['user_id']);
-            ?>
+    <div id="wrapper">
 
-            <!-- /**
+        <!-- /**
             * Etape 2: se connecter à la base de donnée
             */ -->
-            <?php include("BDD.php"); ?>
+        <?php include("BDD.php"); ?>
 
-            <aside>
-                <?php
-                /**
-                 * Etape 3: récupérer le nom de l'utilisateur
-                 */                
-                $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                $user = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
-                <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo ($user['alias']) ?>
-                        (n° <?php echo $userId ?>)
-                    </p>
-                </section>
-            </aside>
-            <main>
-                <?php
-                /**
-                 * Etape 3: récupérer tous les messages de l'utilisatrice
-                 */
-                $laQuestionEnSql = "
+        <aside>
+            <?php
+            /**
+             * Etape 3: récupérer le nom de l'utilisateur
+             */
+            $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            $user = $lesInformations->fetch_assoc();
+            //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
+            ?>
+            <img src="user.jpg" alt="Portrait de l'utilisatrice" />
+            <section>
+                <h3>Présentation</h3>
+                <p>Sur cette page vous trouverez tous les message de l'utilisatrice :
+                    <?php echo ($user['alias']) ?>
+                    (n°
+                    <?php echo $userId ?>)
+                </p>
+            </section>
+        </aside>
+        <main>
+            <?php include("form.php") ?>
+            <?php
+            /**
+             * Etape 3: récupérer tous les messages de l'utilisatrice
+             */
+            $laQuestionEnSql = "
                     SELECT posts.content, posts.created, users.alias as author_name, users.id as author_id, 
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
@@ -59,20 +52,20 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-                
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
-                {
-                    echo("Échec de la requete : " . $mysqli->error);
-                }
 
-                /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 */
-                include("post.php");
-                ?>
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            if (!$lesInformations) {
+                echo ("Échec de la requete : " . $mysqli->error);
+            }
 
-            </main>
-        </div>
-    </body>
+            /**
+             * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+             */
+            include("post.php");
+            ?>
+
+        </main>
+    </div>
+</body>
+
 </html>
