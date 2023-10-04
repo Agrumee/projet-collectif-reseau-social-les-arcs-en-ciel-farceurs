@@ -74,27 +74,8 @@
                 /**
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  */
-                while ($post = $lesInformations->fetch_assoc())
-                {
-                    ?>                
-                    <article>
-                        <h3>
-                            <time datetime='01-02-2020 11:12:13' ><?php echo $post['created'] ?></time>
-                        </h3>
-                        <address>
-                            <?php include("user_wall.php");?>
-                        </address>
-                        <div>
-                            <p><?php echo $post['content'] ?></p>
-                        </div>
-                        <footer>
-                            <small><?php echo( "♥ " . $post['like_number']) ?></small>
-                            <a href=""><?php echo ( "#" . $post['taglist']) ?></a>,
-                        </footer>
-                    </article>
-                <?php } ?>
-
-
+                include("post.php");
+                ?>
             </main>
         </div>
     </body>

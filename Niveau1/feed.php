@@ -74,34 +74,8 @@
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  * A vous de retrouver comment faire la boucle while de parcours...
                  */
-
-
-          
-                while ($post = $lesInformations->fetch_assoc())
-                {
-                    // echo "<pre>" . print_r($post, 1) . "</pre>";
-                ?>   
-                <article>
-                    <h3>
-                        <time datetime='2020-02-01 11:12:13' ><?php echo $post['created']; ?></time>
-                    </h3>
-                    <address><?php
-                    include("user_wall.php");
-                    ?></address>
-                    <div>
-                        <p><?php echo $post['content']; ?></p>
-                    </div>                                            
-                    <footer>
-                        <small><?php echo( "♥ " . $post['like_number']); ?></small>
-                        <a href=""><?php echo ( "#" . $post['taglist']); ?></a>,
-                    </footer>
-                </article>
-                <?php
-                }
-                // et de pas oublier de fermer ici vote while
-                ?>
-
-
+                 include("post.php");
+                 ?>
             </main>
         </div>
     </body>
