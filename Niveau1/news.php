@@ -46,6 +46,7 @@
                     posts.created,
                     users.alias as author_name, 
                     users.id as author_id, 
+                    posts.id as postId,
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
@@ -57,6 +58,8 @@
                     ORDER BY posts.created DESC  
                     LIMIT 5
                     ";
+
+                    
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Vérification
                 if ( ! $lesInformations)
