@@ -1,53 +1,71 @@
+<?php
+session_start();
+if (!isset($_SESSION['connected_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
 <!doctype html>
 <html lang="fr">
-    <?php include("head.php"); ?>
-    <title>ReSoC - Flux</title>       
+<?php include("head.php"); ?>
+<title>ReSoC - Flux</title>
 
-    <body>
-        <?php include("header.php"); ?>
-        <div id="wrapper">
-            <?php
-            /**
-             * Cette page est TRES similaire à wall.php. 
-             * Vous avez sensiblement à y faire la meme chose.
-             * Il y a un seul point qui change c'est la requete sql.
-             */
-            /**
-             * Etape 1: Le mur concerne un utilisateur en particulier
-             */
-            $userId = intval($_GET['user_id']);
-            ?>
-            <!-- /**
+<body>
+    <?php include("header.php"); ?>
+
+    <?php
+
+    if (isset($_SESSION['connected_id']) === true) {
+        echo 'salut';
+    } else {
+        echo 'rien';
+    }
+    ?>
+
+
+    <div id="wrapper">
+        <?php
+        /**
+         * Cette page est TRES similaire à wall.php. 
+         * Vous avez sensiblement à y faire la meme chose.
+         * Il y a un seul point qui change c'est la requete sql.
+         */
+        /**
+         * Etape 1: Le mur concerne un utilisateur en particulier
+         */
+        $userId = intval($_GET['user_id']);
+        ?>
+        <!-- /**
             * Etape 2: se connecter à la base de donnée
             */ -->
-            <?php include("BDD.php"); ?>
+        <?php include("BDD.php"); ?>
 
-            <aside>
-                <?php
-                /**
-                 * Etape 3: récupérer le nom de l'utilisateur
-                 */
-                $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                $user = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                // echo "<pre>" . print_r($user, 1) . "</pre>";
-                ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
-                <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquel est abonnée l'utilisatrice : <?php echo ("n° " . $userId); ?>
-                    </p>
-
-                </section>
-            </aside>
-            <main>
-                <?php
-                /**
-                 * Etape 3: récupérer tous les messages des abonnements
-                 */
-                $laQuestionEnSql = "
+        <aside>
+            <?php
+            /**
+             * Etape 3: récupérer le nom de l'utilisateur
+             */
+            $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            $user = $lesInformations->fetch_assoc();
+            //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
+            // echo "<pre>" . print_r($user, 1) . "</pre>";
+            ?>
+            <img src="user.jpg" alt="Portrait de l'utilisatrice" />
+            <section>
+                <h3>Présentation</h3>
+                <p>Sur cette page vous trouverez tous les message des utilisatrices
+                    auxquel est abonnée l'utilisatrice :
+                    <?php echo ("n° " . $userId); ?>
+                </p>
+            </section>
+        </aside>
+        <main>
+            <?php
+            /**
+             * Etape 3: récupérer tous les messages des abonnements
+             */
+            $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
                     users.alias as author_name,  
@@ -64,19 +82,19 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
-                {
-                    echo("Échec de la requete : " . $mysqli->error);
-                }
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            if (!$lesInformations) {
+                echo ("Échec de la requete : " . $mysqli->error);
+            }
 
-                /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 * A vous de retrouver comment faire la boucle while de parcours...
-                 */
-                 include("post.php");
-                 ?>
-            </main>
-        </div>
-    </body>
+            /**
+             * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+             * A vous de retrouver comment faire la boucle while de parcours...
+             */
+            include("post.php");
+            ?>
+        </main>
+    </div>
+</body>
+
 </html>
