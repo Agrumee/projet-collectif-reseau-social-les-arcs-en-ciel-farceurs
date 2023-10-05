@@ -8,6 +8,17 @@
     <?php include("header.php"); ?>
 
     <div id="wrapper">
+        <?php
+        /**
+         * Cette page est TRES similaire à wall.php. 
+         * Vous avez sensiblement à y faire la meme chose.
+         * Il y a un seul point qui change c'est la requete sql.
+         */
+        /**
+         * Etape 1: Le mur concerne un utilisateur en particulier
+         */
+        $userId = intval($_GET['user_id']);
+        ?>
 
         <!-- /**
             * Etape 2: se connecter à la base de donnée
@@ -32,6 +43,19 @@
                     (n°
                     <?php echo $userId ?>)
                 </p>
+                <?php if ($userId != $_SESSION['connected_id']) { ?>
+                    <form action="<?php $lInstructionSql = "INSERT INTO followers "
+                        . "(id, followed_user_id, following_user_id) "
+                        . "VALUES (NULL, "
+                        . $userId . ", "
+                        . $_SESSION['connected_id'] . ");"
+                    ;
+                    $ok = $mysqli->query($lInstructionSql); ?>" method="post">
+                        <input type='hidden' name='???' value='achanger'>
+
+                        <input type='submit' value="S'abonner">
+                    </form>
+                <?php } ?>
             </section>
         </aside>
         <main>
@@ -51,6 +75,7 @@
                     WHERE posts.user_id='$userId' 
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
+
                     ";
 
             $lesInformations = $mysqli->query($laQuestionEnSql);
