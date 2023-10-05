@@ -24,22 +24,20 @@ while ($post = $lesInformations->fetch_assoc()) {
                 <form method="post" action="<?php $lInstructionSql = "INSERT INTO likes "
                     . "(id, user_id, post_id) "
                     . "VALUES (NULL, "
-                    . $userId . ", "
+                    . $_SESSION['connected_id'] . ", "
                     . $post['num_post'] . ");"
                 ;
                 $ok = $mysqli->query($lInstructionSql); ?>">
                     <input type='hidden' name='???' value='achanger'>
 
-                    <input class="like" type='submit' value="♥">
+                    <input id="like" type='submit' value="♥">
                     <?php
 
                     echo ($post['like_number']); ?>
 
-
-
-
+                </form>
             </small>
-            </form>
+
             <a href="">
                 <?php echo ("#" . $post['taglist']); ?>
             </a>,
