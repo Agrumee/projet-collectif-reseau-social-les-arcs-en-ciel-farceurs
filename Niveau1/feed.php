@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['connected_id'])) {
-    header("Location: login.php");
-    exit();
-}
-?>
 <!doctype html>
 <html lang="fr">
 <?php include("head.php"); ?>
@@ -12,15 +5,6 @@ if (!isset($_SESSION['connected_id'])) {
 
 <body>
     <?php include("header.php"); ?>
-
-    <?php
-
-    if (isset($_SESSION['connected_id']) === true) {
-        echo 'salut';
-    } else {
-        echo 'rien';
-    }
-    ?>
 
 
     <div id="wrapper">
@@ -41,6 +25,14 @@ if (!isset($_SESSION['connected_id'])) {
         <?php include("BDD.php"); ?>
 
         <aside>
+            <?php
+
+            if (isset($_SESSION['connected_id']) === true) {
+                echo 'salut';
+            } else {
+                echo 'rien';
+            }
+            ?>
             <?php
             /**
              * Etape 3: récupérer le nom de l'utilisateur
