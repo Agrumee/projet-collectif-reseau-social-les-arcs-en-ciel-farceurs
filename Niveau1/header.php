@@ -15,15 +15,7 @@
             <li><a href="followers.php?user_id=<?php echo $userId ?>">Mes suiveurs</a></li>
             <li><a href="subscriptions.php?user_id=<?php echo $userId ?>">Mes abonnements</a></li>
             <li><a href="login.php">Connexion</a></li>
-            <li>
-                <form id="logout"
-                    action="<?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        $_SESSION['connected_id'] = null;
-                    } ?>"
-                    method="post">
-                    <input name='logout' value="se déconnecter" type='submit'>
-                </form>
-            </li>
+            <li><a href="logout.php">Déconnexion</a></li>
         </ul>
     </nav>
 </header>

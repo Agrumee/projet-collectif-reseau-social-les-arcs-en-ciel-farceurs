@@ -3,6 +3,10 @@ $marequete = "SELECT * FROM followers WHERE following_user_id= $_SESSION[connect
 $reponse = $mysqli->query($marequete);
 echo "<pre>" . print_r($reponse, 1) . "</pre>";
 if ($userId != $following_user_id && mysqli_num_rows($reponse) == 0) { ?>
+    <?php 
+        echo "on est sur la partie abonnement";
+        echo mysqli_num_rows($reponse);
+    ?>
     <form action="<?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $followed_user_id = $_POST['followed_user_id'];
@@ -22,6 +26,10 @@ if ($userId != $following_user_id && mysqli_num_rows($reponse) == 0) { ?>
     </form>
 <?php }
 if ($userId != $following_user_id && mysqli_num_rows($reponse) > 0) { ?>
+    <?php 
+        echo "on est sur le désabonnement";
+        echo mysqli_num_rows($reponse);
+    ?>
     <form action="<?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $followed_user_id = $_POST['followed_user_id'];
