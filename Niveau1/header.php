@@ -1,8 +1,3 @@
-<?php
-session_start();
-$userId = $_SESSION['connected_id'];
-?>
-
 <header>
     <img src="resoc.jpg" alt="Logo de notre réseau social" />
     <nav id="menu">
@@ -19,7 +14,10 @@ $userId = $_SESSION['connected_id'];
             <li><a href="subscriptions.php?user_id=<?php echo $userId ?>">Mes abonnements</a></li>
             <li><a href="login.php">Connexion</a></li>
             <li>
-                <form action="<?php if ($_SERVER["REQUEST_METHOD"] == "POST") {$_SESSION['connected_id']=null;} ?>" method="post">
+                <form action="<?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $_SESSION['connected_id'] = null;
+                } ?>"
+                    method="post">
                     <input name='logout' value="se déconnecter" type='submit'>
                 </form>
             </li>

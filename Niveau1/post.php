@@ -20,13 +20,14 @@ while ($post = $lesInformations->fetch_assoc()) {
         <footer>
             <small>
                 <form method="post" action='like.php'>
-                    <input type='hidden' name='location' value='<?php echo ($_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']); ?>'>
+                    <input type='hidden' name='location'
+                        value='<?php echo ($_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']); ?>'>
                     <input type='hidden' name='post_id' value='<?php echo $post['postId']; ?>'>
                     <input type='hidden' name='user_id' value='<?php echo $_SESSION['connected_id']; ?>'>
                     <input type='hidden' name='author_id' value='<?php echo $post['author_id']; ?>'>
                     <input class="like" type='submit' value="♥">
+                    <?php echo $post['like_number']; ?>
                 </form>
-                <?php echo $post['like_number']; ?>
             </small>
             <a href="">
                 <?php echo ("#" . $post['taglist']); ?>
