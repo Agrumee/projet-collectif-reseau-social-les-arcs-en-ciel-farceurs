@@ -10,13 +10,21 @@
 
         <?php if ($_SESSION["connected_id"] == null) {
             ?>
+            <aside>
+                <section>
+                    <h3>Présentation</h3>
+                    <p>
+                        Sur cette page vous trouverez les informations de l'utilisatrice
+                    </p>
+                </section>
+            </aside>
             <main>
                 <article>
                     <h2>Information</h2>
                     <p>Veuillez vous connecter à votre compte.</p>
                     <p><a href='login.php'>Connectez-vous</a></p><br>
                     <h3>Pas de compte?</h3>
-                        <p><a href='registration.php'>Inscrivez-vous</a></p>
+                    <p><a href='registration.php'>Inscrivez-vous</a></p>
                 </article>
             </main>
         <?php } else {

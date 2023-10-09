@@ -1,30 +1,42 @@
 <?php include("head.php"); ?>
 <!doctype html>
 <html lang="fr">
-    <title>ReSoC - Mes abonnements</title> 
-    <body>
-        <?php include("header.php"); ?>
-        <div id="wrapper">
+<title>ReSoC - Mes abonnements</title>
+
+<body>
+    <?php include("header.php"); ?>
+    <div id="wrapper">
         <?php if ($_SESSION["connected_id"] == null) {
             ?>
+            <aside>
+                <section>
+                    <h3>Présentation</h3>
+                    <p>Sur cette page vous trouverez la liste des personnes dont
+                        l'utilisatrice
+                        suit les messages
+                    </p>
+
+                </section>
+            </aside>
             <main>
                 <article>
                     <h2>Information</h2>
                     <p>Veuillez vous connecter à votre compte.</p>
                     <p><a href='login.php'>Connectez-vous</a></p><br>
                     <h3>Pas de compte?</h3>
-                        <p><a href='registration.php'>Inscrivez-vous</a></p>
+                    <p><a href='registration.php'>Inscrivez-vous</a></p>
                 </article>
             </main>
         <?php } else {
             ?>
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="user.jpg" alt="Portrait de l'utilisatrice" />
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez la liste des personnes dont
                         l'utilisatrice
-                        n° <?php echo intval($_GET['user_id']) ?>
+                        n°
+                        <?php echo intval($_GET['user_id']) ?>
                         suit les messages
                     </p>
 
@@ -47,18 +59,22 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Etape 4: à vous de jouer
                 //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
-                while ($users = $lesInformations->fetch_assoc())
-                {
-                ?>
-                <article>
-                    <img src="user.jpg" alt="blason"/>
-                    <h3><?php echo ($users['alias'])?></h3>
-                    <p>id: <?php echo ($users['id'])?></p>                    
-                </article>
+                while ($users = $lesInformations->fetch_assoc()) {
+                    ?>
+                    <article>
+                        <img src="user.jpg" alt="blason" />
+                        <h3>
+                            <?php echo ($users['alias']) ?>
+                        </h3>
+                        <p>id:
+                            <?php echo ($users['id']) ?>
+                        </p>
+                    </article>
                 <?php } ?>
             </main>
         </div>
-        <?php }
+    <?php }
         ?>
-    </body>
+</body>
+
 </html>

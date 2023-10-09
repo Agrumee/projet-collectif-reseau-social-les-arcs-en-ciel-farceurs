@@ -29,7 +29,7 @@ while ($post = $lesInformations->fetch_assoc()) {
                     <?php echo $post['like_number']; ?>
                 </form>
             </small>
-            
+
             <a href="">
                 <?php echo ("#" . $post['taglist']); ?>
             </a>,
