@@ -24,6 +24,5 @@ $userId = $_SESSION['connected_id'];
                 </form>
             </li>
         </ul>
-
     </nav>
 </header>
