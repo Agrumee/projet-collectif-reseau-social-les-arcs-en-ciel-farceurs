@@ -25,9 +25,10 @@ while ($post = $lesInformations->fetch_assoc()) {
                     <input type='hidden' name='user_id' value='<?php echo $_SESSION['connected_id']; ?>'>
                     <input type='hidden' name='author_id' value='<?php echo $post['author_id']; ?>'>
                     <input class="like" type='submit' value="♥">
+                    <?php echo $post['like_number']; ?>
                 </form>
-                <?php echo $post['like_number']; ?>
             </small>
+            
             <a href="">
                 <?php echo ("#" . $post['taglist']); ?>
             </a>,
