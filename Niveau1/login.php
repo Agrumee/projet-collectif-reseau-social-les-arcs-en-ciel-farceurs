@@ -1,9 +1,6 @@
-<?php
-session_start();
-?>
+<?php include("head.php"); ?>
 <!doctype html>
 <html lang="fr">
-    <?php include("head.php"); ?>
     <title>ReSoC - Connexion</title> 
     <body>
         <?php include("header.php"); ?>

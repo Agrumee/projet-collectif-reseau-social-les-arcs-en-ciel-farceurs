@@ -1,6 +1,6 @@
+<?php include("head.php"); ?>
 <!doctype html>
 <html lang="fr">
-    <?php include("head.php"); ?>
     <title>ReSoC - Mes abonnements</title> 
     <body>
         <?php include("header.php"); ?>

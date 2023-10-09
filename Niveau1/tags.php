@@ -1,7 +1,6 @@
+<?php include("head.php"); ?>
 <!doctype html>
 <html lang="fr">
-
-    <?php include("head.php"); ?>
     <title>ReSoC - Les message par mot-clé</title> 
 
     <body>
