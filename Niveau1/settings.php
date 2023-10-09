@@ -1,26 +1,35 @@
 <?php include("head.php"); ?>
 <!doctype html>
 <html lang="fr">
-    <title>ReSoC - Paramètres</title> 
+<title>ReSoC - Paramètres</title>
 
-    <body>
-        <?php include("header.php"); ?>
+<body>
+    <?php include("header.php"); ?>
 
-        <div id="wrapper" class='profile'>
+    <div id="wrapper" class='profile'>
 
-        <?php if($_SESSION["connected_id"] == null) {
-                echo 'Veuillez vous connecter pour accéder à cette page';
-            } 
-            else {
+        <?php if ($_SESSION["connected_id"] == null) {
+            ?>
+            <main>
+                <article>
+                    <h2>Information</h2>
+                    <p>Veuillez vous connecter à votre compte.</p>
+                    <p><a href='login.php'>Connectez-vous</a></p><br>
+                    <h3>Pas de compte?</h3>
+                        <p><a href='registration.php'>Inscrivez-vous</a></p>
+                </article>
+            </main>
+        <?php } else {
             ?>
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="user.jpg" alt="Portrait de l'utilisatrice" />
                 <section>
                     <h3>Présentation</h3>
                     <p>
                         Sur cette page vous trouverez les informations de l'utilisatrice
-                        n° <?php echo intval($_GET['user_id']) ?></p>
-
+                        n°
+                        <?php echo intval($_GET['user_id']) ?>
+                    </p>
                 </section>
             </aside>
             <main>
@@ -57,9 +66,8 @@
                     GROUP BY users.id
                     ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
-                {
-                    echo("Échec de la requete : " . $mysqli->error);
+                if (!$lesInformations) {
+                    echo ("Échec de la requete : " . $mysqli->error);
                 }
                 $user = $lesInformations->fetch_assoc();
 
@@ -67,26 +75,37 @@
                  * Etape 4: à vous de jouer
                  */
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer les valeurs ci-après puiseffacer la ligne ci-dessous
-                ?>                
+                ?>
                 <article class='parameters'>
                     <h3>Mes paramètres</h3>
                     <dl>
                         <dt>Pseudo</dt>
-                        <dd><?php echo ($user['alias']) ?></dd>
+                        <dd>
+                            <?php echo ($user['alias']) ?>
+                        </dd>
                         <dt>Email</dt>
-                        <dd><?php echo ($user['email']) ?></dd>
+                        <dd>
+                            <?php echo ($user['email']) ?>
+                        </dd>
                         <dt>Nombre de message</dt>
-                        <dd><?php echo ($user['totalpost']) ?></dd>
+                        <dd>
+                            <?php echo ($user['totalpost']) ?>
+                        </dd>
                         <dt>Nombre de "J'aime" donnés </dt>
-                        <dd><?php echo ($user['totalgiven']) ?></dd>
+                        <dd>
+                            <?php echo ($user['totalgiven']) ?>
+                        </dd>
                         <dt>Nombre de "J'aime" reçus</dt>
-                        <dd><?php echo ($user['totalrecieved']) ?></dd>
+                        <dd>
+                            <?php echo ($user['totalrecieved']) ?>
+                        </dd>
                     </dl>
 
                 </article>
             </main>
         </div>
-            <?php }
-            ?>
-    </body>
+    <?php }
+        ?>
+</body>
+
 </html>
