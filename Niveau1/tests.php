@@ -2,7 +2,7 @@
 $marequete = "SELECT * FROM followers WHERE following_user_id= $_SESSION[connected_id] AND  followed_user_id='$userId'";
 $reponse = $mysqli->query($marequete);
 echo "<pre>" . print_r($reponse, 1) . "</pre>";
-if ($userId != $following_user_id && mysqli_num_rows($reponse) == 0) { ?>
+if ($userId != $_SESSION['connected_id'] && mysqli_num_rows($reponse) == 0) { ?>
     <form action="<?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $followed_user_id = $_POST['followed_user_id'];
@@ -21,7 +21,7 @@ if ($userId != $following_user_id && mysqli_num_rows($reponse) == 0) { ?>
         <input type='submit' value="S'abonner">
     </form>
 <?php }
-if ($userId != $following_user_id && mysqli_num_rows($reponse) > 0) { ?>
+if ($userId != $_SESSION['connected_id'] && mysqli_num_rows($reponse) > 0) { ?>
     <form action="<?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $followed_user_id = $_POST['followed_user_id'];
