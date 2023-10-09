@@ -45,16 +45,20 @@
                 </p>
                 <?php if ($userId != $_SESSION['connected_id']) { ?>
                     <form action="<?php 
-                    if ($_SERVER["REQUEST_METHOD"] == "PUT") {
-                        echo "toto";
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $followed_user_id = $_POST['followed_user_id'];
+                        $following_user_id = $_POST['following_user_id'];
+
+
                         $lInstructionSql = 'INSERT INTO followers'
                         . '(id, followed_user_id, following_user_id)'
                         . 'VALUES (NULL, '
-                        . $userId . ', '
-                        . $_SESSION['connected_id'] . ');';
+                        . $followed_user_id . ', '
+                        . $following_user_id . ');';
                     $ok = $mysqli->query($lInstructionSql);
-                    }?>" method="put">
-                        <input type='hidden' name='???' value='achanger'>
+                    }?>" method="post">
+                        <input type='hidden' name='followed_user_id' value="<?php echo $userId; ?>">
+                        <input type='hidden' name='following_user_id' value="<?php echo $_SESSION['connected_id']; ?>">
 
                         <input type='submit' value="S'abonner">
                     </form>
