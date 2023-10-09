@@ -5,7 +5,21 @@
 
     <body>
         <?php include("header.php"); ?>
-        <div id="wrapper">          
+        <div id="wrapper">  
+            
+        <?php if ($_SESSION["connected_id"] == null) {
+            ?>
+            <main>
+                <article>
+                    <h2>Information</h2>
+                    <p>Veuillez vous connecter à votre compte.</p>
+                    <p><a href='login.php'>Connectez-vous</a></p><br>
+                    <h3>Pas de compte?</h3>
+                        <p><a href='registration.php'>Inscrivez-vous</a></p>
+                </article>
+            </main>
+        <?php } else {
+            ?>
             <aside>
                 <img src = "user.jpg" alt = "Portrait de l'utilisatrice"/>
                 <section>
@@ -45,5 +59,7 @@
                 <?php } ?>
             </main>
         </div>
+        <?php }
+        ?>
     </body>
 </html>

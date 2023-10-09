@@ -8,17 +8,31 @@
 
 
     <div id="wrapper">
-        <?php
-        /**
+        
+    <?php if ($_SESSION["connected_id"] == null) {
+            ?>
+            <main>
+                <article>
+                    <h2>Information</h2>
+                    <p>Veuillez vous connecter à votre compte.</p>
+                    <p><a href='login.php'>Connectez-vous</a></p><br>
+                    <h3>Pas de compte?</h3>
+                        <p><a href='registration.php'>Inscrivez-vous</a></p>
+                </article>
+            </main>
+        <?php } else {
+            ?>
+
+        <!-- /**
          * Cette page est TRES similaire à wall.php. 
          * Vous avez sensiblement à y faire la meme chose.
          * Il y a un seul point qui change c'est la requete sql.
          */
         /**
          * Etape 1: Le mur concerne un utilisateur en particulier
-         */
-        $userId = intval($_GET['user_id']);
-        ?>
+         */ -->
+        <?php $userId = intval($_GET['user_id']); ?>
+        
         <!-- /**
             * Etape 2: se connecter à la base de donnée
             */ -->
@@ -88,6 +102,8 @@
             ?>
         </main>
     </div>
+    <?php }
+    ?>
 </body>
 
 </html>

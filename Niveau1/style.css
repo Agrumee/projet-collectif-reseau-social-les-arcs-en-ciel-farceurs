@@ -168,3 +168,23 @@ form dl dd textarea{width:40em;height: 15em;}
     background-color:blue
 }
 
+
+#wrapper .class main{
+    flex:3;
+    padding-left:1em;
+    height: 80vh;
+    overflow-y:  scroll;
+}
+#wrapper .class main article{
+    background-color: red;
+    padding:1em;
+    margin-bottom: 1em ;
+    border-radius: 1em;
+}
+.class main article h3{
+    margin:0;
+    padding:0;
+    font-weight: normal;
+    font-size:1em;
+
+}
