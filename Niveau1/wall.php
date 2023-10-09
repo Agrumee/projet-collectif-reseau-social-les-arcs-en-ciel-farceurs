@@ -44,13 +44,16 @@
                     <?php echo $userId ?>)
                 </p>
                 <?php if ($userId != $_SESSION['connected_id']) { ?>
-                    <form action="<?php $lInstructionSql = "INSERT INTO followers "
-                        . "(id, followed_user_id, following_user_id) "
-                        . "VALUES (NULL, "
-                        . $userId . ", "
-                        . $_SESSION['connected_id'] . ");"
-                    ;
-                    $ok = $mysqli->query($lInstructionSql); ?>" method="post">
+                    <form action="<?php 
+                    if ($_SERVER["REQUEST_METHOD"] == "PUT") {
+                        echo "toto";
+                        $lInstructionSql = 'INSERT INTO followers'
+                        . '(id, followed_user_id, following_user_id)'
+                        . 'VALUES (NULL, '
+                        . $userId . ', '
+                        . $_SESSION['connected_id'] . ');';
+                    $ok = $mysqli->query($lInstructionSql);
+                    }?>" method="put">
                         <input type='hidden' name='???' value='achanger'>
 
                         <input type='submit' value="S'abonner">
