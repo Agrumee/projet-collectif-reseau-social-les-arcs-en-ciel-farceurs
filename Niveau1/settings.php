@@ -8,12 +8,17 @@
 
         <div id="wrapper" class='profile'>
 
-
+        <?php if($_SESSION["connected_id"] == null) {
+                echo 'Veuillez vous connecter pour accéder à cette page';
+            } 
+            else {
+            ?>
             <aside>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez les informations de l'utilisatrice
+                    <p>
+                        Sur cette page vous trouverez les informations de l'utilisatrice
                         n° <?php echo intval($_GET['user_id']) ?></p>
 
                 </section>
@@ -81,5 +86,7 @@
                 </article>
             </main>
         </div>
+            <?php }
+            ?>
     </body>
 </html>

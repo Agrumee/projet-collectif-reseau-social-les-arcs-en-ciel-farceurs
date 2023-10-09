@@ -76,6 +76,9 @@
                             followed_user_id=$followed_user_id AND following_user_id =$following_user_id';
 
                             $ok = $mysqli->prepare($lInstructionSql);
+                            $sth->execute();
+
+                            $count = $sth->rowCount();
                         } ?>" method="post">
                             <input type='hidden' name='followed_user_id' value="<?php echo $userId; ?>">
                             <input type='hidden' name='following_user_id' value="<?php echo $_SESSION['connected_id']; ?>">
