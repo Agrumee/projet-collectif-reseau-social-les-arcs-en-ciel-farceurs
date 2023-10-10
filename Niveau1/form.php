@@ -27,13 +27,15 @@ error_reporting(E_ALL); ini_set("display_errors", 1);
             if (!$ok) {
                 echo "Impossible d'ajouter le message: " . $mysqli->error;
             } else {
-                // Récupère l'ID du post inséré
-                $postId = $mysqli->insert_id;
+                $postId = $mysqli->insert_id; // Récupère l'ID du post inséré
+                echo "$postId";
+    
                 // Vérifier les tags présents dans le message et ajouter des lignes à la table posts_tags en fonction
                 $sql = "SELECT * FROM tags";
                 $res = $mysqli->query($sql);
                 while ($tag = $res->fetch_assoc()) {
                     $tagLabel = '#' . $tag['label'];
+                    echo "$tagLabel";
                     // Vérifier si le tag est présent dans le contenu du message
                     if (strpos($postContent, $tagLabel) !== false) {
                         $insertSql = "INSERT INTO posts_tags (id, post_id, tag_id) VALUES (NULL, '$postId', '$tag[id]')";

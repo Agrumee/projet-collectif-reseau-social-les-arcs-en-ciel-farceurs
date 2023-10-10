@@ -12,6 +12,10 @@
         <?php if ($_SESSION["connected_id"] == null) {
             ?>
             <aside>
+                <?php
+                error_reporting(E_ALL);
+                ini_set("display_errors", 1);
+                ?>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message des utilisatrices
@@ -80,7 +84,7 @@
                     users.alias as author_name,  
                     users.id as author_id,
                     count(likes.id) as like_number,  
-                    posts.id as num_post,
+                    posts.id as postId,
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM followers 
                     JOIN users ON users.id=followers.followed_user_id
