@@ -31,8 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } 
         else {
+             // requête SQL pour ajouter un like
+             $lInstructionSql = "DELETE FROM `likes` WHERE user_id='$user_id' AND post_id='$post_id' ";
+         ;
+         $mysqli->query($lInstructionSql);
             header("Location:$location");
             exit();
+            
         }
     }
 }
