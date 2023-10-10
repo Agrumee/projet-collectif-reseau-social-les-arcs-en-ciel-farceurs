@@ -14,7 +14,8 @@ while ($post = $lesInformations->fetch_assoc()) {
         </address>
         <div>
             <p>
-                <?php echo $post['content']; ?>
+                <?php echo nl2br($post['content']);
+                ?>
             </p>
         </div>
         <footer>
@@ -37,7 +38,7 @@ while ($post = $lesInformations->fetch_assoc()) {
                 </form>
             </small>
             <?php
-            foreach (explode (",", $post['taglist']) as &$label) { ?>
+            foreach (explode (",", $post['taglist']) as $label) { ?>
             <?php 
                 $marequete = "SELECT * FROM tags WHERE label='$label'";
                 $reponse = $mysqli->query($marequete);
