@@ -30,7 +30,10 @@
         <?php } else {
             ?>
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice" />
+                <?php include("BDD.php");
+                if ($_SESSION['connected_id'] != "null") {
+                    include('photoprofil.php');
+                } ?>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez la liste des personnes dont
@@ -47,7 +50,7 @@
                 // Etape 1: récupérer l'id de l'utilisateur
                 $userId = intval($_GET['user_id']);
                 // Etape 2: se connecter à la base de donnée
-                include("BDD.php");
+            
                 // Etape 3: récupérer le nom de l'utilisateur
                 $laQuestionEnSql = "
                     SELECT users.* 

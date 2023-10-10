@@ -31,7 +31,7 @@ while ($post = $lesInformations->fetch_assoc()) {
                                 echo"♡"; 
                             }
                             else {
-                                echo"❤️";
+                                echo"♥";
                             }?>">
                     <?php echo $post['like_number']; ?>
                 </form>

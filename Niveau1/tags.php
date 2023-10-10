@@ -1,53 +1,56 @@
 <?php include("head.php"); ?>
 <!doctype html>
 <html lang="fr">
-    <title>ReSoC - Les message par mot-clé</title> 
+<title>ReSoC - Les message par mot-clé</title>
 
-    <body>
-        <?php include("header.php"); ?>
+<body>
+    <?php include("header.php"); ?>
 
-        <div id="wrapper">
-            <?php
-            /**
-             * Cette page est similaire à wall.php ou feed.php 
-             * mais elle porte sur les mots-clés (tags)
-             */
-            /**
-             * Etape 1: Le mur concerne un mot-clé en particulier
-             */
-            $tagId = intval($_GET['tag_id']);
-            ?>
-            <!-- /**
+    <div id="wrapper">
+        <?php
+        /**
+         * Cette page est similaire à wall.php ou feed.php 
+         * mais elle porte sur les mots-clés (tags)
+         */
+        /**
+         * Etape 1: Le mur concerne un mot-clé en particulier
+         */
+        $tagId = intval($_GET['tag_id']);
+        ?>
+        <!-- /**
              * Etape 2: se connecter à la base de donnée
              */ -->
-            <?php include("BDD.php"); ?>
+        <?php include("BDD.php"); ?>
 
 
-            <aside>
-                <?php
-                /**
-                 * Etape 3: récupérer le nom du mot-clé
-                 */
-                $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                $tag = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
-                ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
-                <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez les derniers messages comportant
-                        le mot-clé <?php echo $tag["label"] ?>
-                    </p>
+        <aside>
+            <?php
+            /**
+             * Etape 3: récupérer le nom du mot-clé
+             */
+            $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            $tag = $lesInformations->fetch_assoc();
+            //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
+            ?>
+            <?php if ($_SESSION['connected_id'] != "null") {
+                include('photoprofil.php');
+            } ?>
+            <section>
+                <h3>Présentation</h3>
+                <p>Sur cette page vous trouverez les derniers messages comportant
+                    le mot-clé
+                    <?php echo $tag["label"] ?>
+                </p>
 
-                </section>
-            </aside>
-            <main>
-                <?php
-                /**
-                 * Etape 3: récupérer tous les messages avec un mot clé donné
-                 */
-                $laQuestionEnSql = "
+            </section>
+        </aside>
+        <main>
+            <?php
+            /**
+             * Etape 3: récupérer tous les messages avec un mot clé donné
+             */
+            $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
                     users.alias as author_name,  
@@ -65,18 +68,18 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
-                {
-                    echo("Échec de la requete : " . $mysqli->error);
-                }
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            if (!$lesInformations) {
+                echo ("Échec de la requete : " . $mysqli->error);
+            }
 
-                /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 */
-                include("post.php");
-                ?>
-            </main>
-        </div>
-    </body>
+            /**
+             * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+             */
+            include("post.php");
+            ?>
+        </main>
+    </div>
+</body>
+
 </html>
