@@ -14,7 +14,8 @@ while ($post = $lesInformations->fetch_assoc()) {
         </address>
         <div>
             <p>
-                <?php echo $post['content']; ?>
+                <?php echo nl2br($post['content']);
+                ?>
             </p>
         </div>
         <footer>
@@ -31,7 +32,7 @@ while ($post = $lesInformations->fetch_assoc()) {
                                 echo"♡"; 
                             }
                             else {
-                                echo"❤️";
+                                echo"♥";
                             }?>">
                     <?php echo $post['like_number']; ?>
                 </form>

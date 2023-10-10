@@ -30,14 +30,23 @@
         <?php } else {
             ?>
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice" />
+                <?php include("BDD.php"); ?>
+
+                <?php include('photoprofil.php') ?>
                 <section>
                     <h3>Présentation</h3>
-                    <p>
-                        Sur cette page vous trouverez les informations de l'utilisatrice
-                        n°
-                        <?php echo intval($_GET['user_id']) ?>
-                    </p>
+
+                    Sur cette page vous trouverez les informations de l'utilisatrice
+                    n°
+                    <?php
+                    echo intval($_GET['user_id']);
+
+                    // $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
+                    // $lesInformations = $mysqli->query($laQuestionEnSql);
+                    // $reponse = $lesInformations->fetch_assoc();
+
+                    // echo "<pre>" . print_r($reponse['photo'], 1) . "</pre>";
+                    // ?>
                 </section>
             </aside>
             <main>
@@ -55,7 +64,6 @@
                  * Etape 2: se connecter à la base de donnée
                  */
 
-                include("BDD.php");
 
 
                 /**
