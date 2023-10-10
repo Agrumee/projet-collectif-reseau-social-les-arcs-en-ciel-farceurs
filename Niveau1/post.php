@@ -36,10 +36,21 @@ while ($post = $lesInformations->fetch_assoc()) {
                     <?php echo $post['like_number']; ?>
                 </form>
             </small>
-
-            <a href="">
-                <?php echo ("#" . $post['taglist']); ?>
-            </a>,
+            <?php
+            foreach (explode (",", $post['taglist']) as &$label) { ?>
+            <?php 
+                $marequete = "SELECT * FROM tags WHERE label='$label'";
+                $reponse = $mysqli->query($marequete);
+                $tag = $reponse->fetch_assoc();
+            ?>
+            <a href='tags.php?tag_id=<?php echo ($tag['id']) ?>'>
+                <?php 
+                if ($label != null) {
+                    echo("#" . $label); 
+                }
+                else echo("<br>")?>
+            </a>
+            <?php } ?>
         </footer>
     </article>
 <?php } ?>
