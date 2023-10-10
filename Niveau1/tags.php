@@ -33,7 +33,7 @@
             $tag = $lesInformations->fetch_assoc();
             //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
             ?>
-            <?php if ($_SESSION['connected_id'] != "null") {
+            <?php if ($_SESSION['connected_id'] != null) {
                 include('photoprofil.php');
             } ?>
             <section>

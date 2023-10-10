@@ -14,8 +14,7 @@ while ($post = $lesInformations->fetch_assoc()) {
         </address>
         <div>
             <p>
-                <?php echo nl2br($post['content']);
-                ?>
+                <?php echo $post['content']; ?>
             </p>
         </div>
         <footer>

@@ -9,7 +9,7 @@
         <aside>
 
             <?php include("BDD.php");
-            if ($_SESSION['connected_id'] != "null") {
+            if ($_SESSION['connected_id'] != null) {
                 include('photoprofil.php');
             } ?>
             <section>
