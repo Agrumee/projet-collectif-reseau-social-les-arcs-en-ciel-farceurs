@@ -12,8 +12,10 @@
             if ($_SESSION['connected_id'] != null) {
                 include('photoprofil.php');
             } else { ?>
-                <div class='cropped'></div>
-            <?php
+                <div class='cropped'>
+                    <img src="deco.png" />
+                </div>
+                <?php
             } ?>
             <section>
                 <h3>Présentation</h3>

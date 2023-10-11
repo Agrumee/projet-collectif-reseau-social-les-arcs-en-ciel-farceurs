@@ -12,7 +12,9 @@
 
 
             <aside>
-                <div class='cropped'></div>
+                <div class='cropped'>
+                    <img src="deco.png" />
+                </div>
                 <section>
                     <h3>Présentation</h2>
                         <p>Sur cette page vous trouverez la liste des personnes qui

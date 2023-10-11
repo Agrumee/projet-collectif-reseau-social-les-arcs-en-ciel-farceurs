@@ -35,7 +35,9 @@
             if ($_SESSION['connected_id'] != null) {
                 include('photoprofil.php');
             } else {
-                echo "<div class='cropped'></div>";
+                echo "<div class='cropped'>
+                <img src='deco.png' />            
+                </div>";
             } ?>
 
             <section>

@@ -10,7 +10,9 @@
             ?>
 
             <aside>
-                <div class='cropped'></div>
+                <div class='cropped'>
+                    <img src="deco.png"/>
+                </div>
                 <section>
                     <h3>Présentation</h2>
                         <p>Sur cette page vous trouverez la liste des personnes dont
@@ -78,7 +80,7 @@
                         <h3>
                             <?php echo ($users['alias']) ?>
                         </h3>
-                        <p>id:
+                        <p style="display:none">id:
                             <?php echo ($users['id']) ?>
                         </p>
                     </div>

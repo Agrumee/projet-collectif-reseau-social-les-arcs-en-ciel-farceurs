@@ -14,15 +14,14 @@
                 error_reporting(E_ALL);
                 ini_set("display_errors", 1);
                 ?>
-
-
-                <div class='cropped'></div>
-
+                <div class='cropped'>
+                    <img src="deco.png" />
+                </div>
                 <section>
                     <h3>Présentation</h3>
                     <p>
                         Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquel est abonnée l'utilisatrice : </p>
+                        auxquel est abonnée l'utilisatrice. </p>
                 </section>
 
             </aside>

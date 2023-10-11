@@ -14,12 +14,13 @@
         if ($userId == null) {
             ?>
             <aside>
-                <div class='cropped'></div>
-
+                <div class='cropped'>
+                    <img src="deco.png" />
+                </div>
                 <section>
                     <h3>Présentation</h3>
                     <p>
-                        Sur cette page vous trouverez tous les message de l'utilisatrice : </p>
+                        Sur cette page vous trouverez tous les message de  </p>
                 </section>
             </aside>
 

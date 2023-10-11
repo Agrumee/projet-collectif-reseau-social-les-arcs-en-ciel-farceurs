@@ -9,8 +9,13 @@
     <div id="wrapper">
 
         <aside>
-            <h2>Présentation</h2>
-            <p>Bienvenu sur notre réseau social.</p>
+            <div class='cropped'>
+                <img src="deco.png" />
+            </div>
+            <section>
+                <h2>Présentation</h2>
+                <p>Bienvenu sur notre réseau social.</p>
+            </section>
         </aside>
         <main>
             <article>

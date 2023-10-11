@@ -51,7 +51,7 @@ body>header #menu {
     display: flex;
     width: 50%;
     align-items: stretch;
-    
+
 }
 
 body>footer #menu a {
@@ -166,7 +166,9 @@ body>header #user:hover ul {
     margin-bottom: 1em;
     border-radius: 1em;
     min-height: 6em;
-    font-size: 2.5rem
+    height: auto;
+    width: -moz-available;
+    flex: 1;
 }
 
 #wrapper main article h3 {
@@ -200,33 +202,44 @@ body>header #user:hover ul {
 }
 
 #wrapper.admin {
-    flex-direction: row-reverse
+    flex-direction: row-reverse;
+    display: flex;
+    justify-content: center;
 }
 
 #wrapper.admin aside {
-    flex: 1;
+    background-color: rgb(34, 0, 51);
     margin-left: 1em;
     border-radius: 0;
     padding: 0;
+    display: block;
+    flex: 1;
+    overflow-y: scroll;
+    height: 80vh;
+    margin-top: 1em
 }
 
 #wrapper.admin main {
     flex: 2;
-    background-color: #f70d0d;
+    background-color: rgb(34, 0, 51);
     border-radius: 0;
     padding: 0;
 }
 
 #wrapper.admin h2 {
+    padding: 2em;
     text-align: center;
 }
 
 #wrapper.admin h3 {
     margin: 0;
+    font-size: 2em
 }
 
 #wrapper.admin nav {
     text-align: right;
+    background-color: rgb(165, 72, 232);
+    padding: 2em
 }
 
 #wrapper.admin article {
@@ -347,6 +360,7 @@ form dl dd textarea {
     justify-content: space-around;
     flex-direction: row-reverse;
     align-items: center;
+    font-size: 1.5rem;
 }
 
 

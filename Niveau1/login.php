@@ -9,11 +9,13 @@
     <div id="wrapper">
 
         <aside>
-            <div class='cropped'></div>
-                <section>
-                    <h3>Présentation</h2>
+            <div class='cropped'>
+                <img src="deco.png" />
+            </div>
+            <section>
+                <h3>Présentation</h2>
                     <p>Bienvenu sur notre réseau social.</p>
-                </section>
+            </section>
         </aside>
         <main>
             <article>
@@ -29,7 +31,7 @@
                     // on ne fait ce qui suit que si un formulaire a été soumis.
                     // Etape 2: récupérer ce qu'il y a dans le formulaire @todo: c'est là que votre travaille se situe
                     // observez le résultat de cette ligne de débug (vous l'effacerez ensuite)
-                    echo "<pre>" . print_r($_POST, 1) . "</pre>";
+                    // echo "<pre>" . print_r($_POST, 1) . "</pre>";
                     // et complétez le code ci dessous en remplaçant les ???
                     $emailAVerifier = $_POST['email'];
                     $passwdAVerifier = $_POST['motpasse'];
