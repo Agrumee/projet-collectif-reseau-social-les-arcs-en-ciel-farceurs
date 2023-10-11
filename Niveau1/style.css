@@ -2,6 +2,9 @@ body {
     background-color: rgb(34, 0, 51);
     font-family: Arial;
     color: white;
+    display: flex;
+    flex-direction: column;
+    height: 1em;
 }
 
 a {
@@ -14,16 +17,34 @@ a:hover {
 }
 
 body>header {
-    background-color: #9e1971;
     display: flex;
+    justify-content: space-between;
     width: 80em;
-    margin: 0 auto 2em auto;
+    margin: 0 auto 0 auto;
     padding: 0;
+    position: inherit;
+    background-color: #ee00ff;
+    height: 0em;
+    z-index: 0;
+    align-items: flex-start;
 
 }
 
+#menu {
+    background-color: #9e1971;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+body>header div {
+    margin-right: 3em;
+}
+
 body>header img {
-    height: 5em;
+    height: 7em;
 }
 
 body>header #menu {
@@ -35,7 +56,7 @@ body>header #menu {
 body>header #menu a {
     flex: 1;
     text-align: center;
-    padding-top: 2em;
+    padding: 2em;
 }
 
 body>header a:hover {
@@ -47,15 +68,15 @@ body>header ul {
 }
 
 body>header #user {
-    margin-left: auto;
-    flex: 0.2;
+    margin-top: 0.5em;
+
 }
 
 body>header #user>a {
     display: block;
     text-align: center;
-    padding: 2em 0;
     width: 100%;
+    font-size: 3em
 }
 
 body>header #user ul {
@@ -65,7 +86,6 @@ body>header #user ul {
     margin: 0;
     margin-left: -5em;
     background-color: #c016ef;
-
     z-index: 1;
 }
 
@@ -83,34 +103,59 @@ body>header #user:hover ul {
 
 #wrapper {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 80em;
     margin: 0 auto 2em auto;
+    z-index: -1;
+    top: 0;
+    left: 0;
 }
 
 #wrapper aside {
-    background-color: #ee00ff;
+    background-color: rgb(34, 0, 51);
     flex: 1;
-    padding: 1em;
-    border-radius: 1em;
+    height: 100em;
+    left: 1em;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
+    justify-content: flex-start;
 }
+
+
 
 #wrapper aside img {
     display: block;
     margin: auto;
-    width: 10em;
-    height: 10em;
+    width: 100%;
+    height: 55em;
     object-position: center;
     object-fit: cover;
+    mix-blend-mode: multiply;
+
+}
+
+#wrapper aside section {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    margin-left: 2em;
+    font-size: 2em;
+    width: 35em;
+}
+
+#wrapper aside section p {
+    height: 4em;
 }
 
 #wrapper main {
     flex: 3;
-    padding-left: 1em;
     height: 80vh;
     overflow-y: scroll;
+    z-index: 1;
+    margin-top: 1em;
 }
 
 #wrapper main article {
@@ -118,6 +163,7 @@ body>header #user:hover ul {
     padding: 1em;
     margin-bottom: 1em;
     border-radius: 1em;
+    min-height: 6em;
 }
 
 #wrapper main article h3 {
@@ -218,8 +264,11 @@ body>header #user:hover ul {
 
 .contacts article img {
     float: right;
-    height: 5em;
+    object-position: center;
+    object-fit: cover;
+    width: 7em;
 }
+
 
 
 
@@ -273,10 +322,83 @@ form dl dd textarea {
 }
 
 .cropped {
-    width: 10em;
-    height: 10em;
+    width: 100%;
+    height: 45em;
+    overflow: hidden;
+    border-radius: 4em;
+    display: block;
+    background-color: #d8aad0e8;
+}
+
+#blason {
+    width: 7em;
+    height: 7em;
     overflow: hidden;
     border-radius: 100%;
     display: block;
-    background-color: #ee00ff;
+    background-color: #d8aad0e8;
+}
+
+#followers {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+body>footer {
+    /* Le footer est positionné en fixed en bas de page, et ses bords collent à l'extrême gauche et l'extrême droite de la page */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+body>footer>nav>ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    /* Cela va aligner les éléments du menu au centre (vu qu'ils sont en 'inline-block') */
+
+}
+
+body>footer>nav>ul>li {
+    display: inline-block;
+}
+
+body>footer>nav>ul>li>a:link,
+body>footer>nav>ul>li>a:visited {
+    display: block;
+    padding: 1rem;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+    /* Ajout de bordures à gauche et à droite de chaque élément de menu (pour simuler les lignes de séparation) */
+    border-right: 1px solid #111;
+    border-left: 1px solid #222;
+}
+
+body>footer>nav>ul>li>a:hover,
+body>footer>nav>ul>li>a:active,
+body>footer>nav>ul>li>a:focus {
+    background-color: black;
+}
+
+/* Suppression des bordures à gauche pour le 1er élément et à droite pour le dernier élément de menu. */
+body>footer>nav>ul>li:first-child>a {
+    border-left: none;
+}
+
+body>footer>nav>ul>li:last-child>a {
+    border-right: none;
 }

@@ -11,6 +11,9 @@
             <?php include("BDD.php");
             if ($_SESSION['connected_id'] != null) {
                 include('photoprofil.php');
+            } else { ?>
+                <div class='cropped'></div>
+            <?php
             } ?>
             <section>
                 <h3>Présentation</h3>
@@ -77,6 +80,9 @@
 
         </main>
     </div>
+    <footer>
+        <?php include("footer.php"); ?>
+    </footer>
 </body>
 
 </html>

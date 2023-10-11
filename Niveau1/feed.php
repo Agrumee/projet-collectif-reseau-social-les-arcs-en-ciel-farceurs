@@ -16,13 +16,17 @@
                 error_reporting(E_ALL);
                 ini_set("display_errors", 1);
                 ?>
+
+
+                <div class='cropped'></div>
+
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquel est abonnée l'utilisatrice :
-
-                    </p>
+                    <p>
+                        Sur cette page vous trouverez tous les message des utilisatrices
+                        auxquel est abonnée l'utilisatrice : </p>
                 </section>
+
             </aside>
             <main>
                 <article>
@@ -33,10 +37,11 @@
                     <p><a href='registration.php'>Inscrivez-vous</a></p>
                 </article>
             </main>
-        <?php } else {
+        </div>
+    <?php } else {
             ?>
 
-            <!-- /**
+        <!-- /**
          * Cette page est TRES similaire à wall.php. 
          * Vous avez sensiblement à y faire la meme chose.
          * Il y a un seul point qui change c'est la requete sql.
@@ -44,41 +49,41 @@
         /**
          * Etape 1: Le mur concerne un utilisateur en particulier
          */ -->
-            <?php $userId = intval($_GET['user_id']); ?>
+        <?php $userId = intval($_GET['user_id']); ?>
 
-            <!-- /**
+        <!-- /**
             * Etape 2: se connecter à la base de donnée
             */ -->
-            <?php include("BDD.php"); ?>
+        <?php include("BDD.php"); ?>
 
-            <aside>
-                <?php
-                /**
-                 * Etape 3: récupérer le nom de l'utilisateur
-                 */
-                $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                $user = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                // echo "<pre>" . print_r($user, 1) . "</pre>";
-                ?>
-                <?php if ($_SESSION['connected_id'] != "null") {
-                    include('photoprofil.php');
-                } ?>
-                <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquel est abonnée l'utilisatrice :
-                        <?php echo ("n° " . $userId); ?>
-                    </p>
-                </section>
-            </aside>
-            <main>
-                <?php
-                /**
-                 * Etape 3: récupérer tous les messages des abonnements
-                 */
-                $laQuestionEnSql = "
+        <aside>
+            <?php
+            /**
+             * Etape 3: récupérer le nom de l'utilisateur
+             */
+            $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            $user = $lesInformations->fetch_assoc();
+            //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
+            // echo "<pre>" . print_r($user, 1) . "</pre>";
+            ?>
+            <?php if ($_SESSION['connected_id'] != "null") {
+                include('photoprofil.php');
+            } ?>
+            <section>
+                <h3>Présentation</h3>
+                <p>Sur cette page vous trouverez tous les message des utilisatrices
+                    auxquel est abonnée l'utilisatrice :
+                    <?php echo ("n° " . $userId); ?>
+                </p>
+            </section>
+        </aside>
+        <main>
+            <?php
+            /**
+             * Etape 3: récupérer tous les messages des abonnements
+             */
+            $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
                     users.alias as author_name,  
@@ -96,21 +101,25 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if (!$lesInformations) {
-                    echo ("Échec de la requete : " . $mysqli->error);
-                }
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            if (!$lesInformations) {
+                echo ("Échec de la requete : " . $mysqli->error);
+            }
 
-                /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 * A vous de retrouver comment faire la boucle while de parcours...
-                 */
-                include("post.php");
-                ?>
-            </main>
+            /**
+             * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+             * A vous de retrouver comment faire la boucle while de parcours...
+             */
+            include("post.php");
+            ?>
+        </main>
         </div>
     <?php }
         ?>
 </body>
+
+<footer>
+    <?php include("footer.php"); ?>
+</footer>
 
 </html>

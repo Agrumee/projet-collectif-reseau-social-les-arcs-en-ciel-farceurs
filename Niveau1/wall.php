@@ -14,13 +14,15 @@
         if ($userId == null) {
             ?>
             <aside>
+                <div class='cropped'></div>
+
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice :
-
-                    </p>
+                    <p>
+                        Sur cette page vous trouverez tous les message de l'utilisatrice : </p>
                 </section>
             </aside>
+
             <main>
                 <article>
                     <h2>Information</h2>
@@ -102,6 +104,9 @@
 
         </main>
     </div>
+    <footer>
+        <?php include("footer.php"); ?>
+    </footer>
 </body>
 
 </html>

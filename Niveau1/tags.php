@@ -32,11 +32,14 @@
             $lesInformations = $mysqli->query($laQuestionEnSql);
             $tag = $lesInformations->fetch_assoc();
             //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
-            ?>
-            <?php if ($_SESSION['connected_id'] != null) {
+            if ($_SESSION['connected_id'] != null) {
                 include('photoprofil.php');
             } ?>
+
+            <div class='cropped'></div>
+
             <section>
+
                 <h3>Présentation</h3>
                 <p>Sur cette page vous trouverez les derniers messages comportant
                     le mot-clé
@@ -80,6 +83,9 @@
             ?>
         </main>
     </div>
+    <footer>
+        <?php include("footer.php"); ?>
+    </footer>
 </body>
 
 </html>
