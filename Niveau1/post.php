@@ -22,24 +22,22 @@ while ($post = $lesInformations->fetch_assoc()) {
             </p>
         </div>
         <footer>
-            <small>
                 <form method="post" action='like.php'>
                     <input type='hidden' name='location'
                         value='<?php echo ($_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']); ?>'>
                     <input type='hidden' name='post_id' value='<?php echo $post['postId']; ?>'>
                     <input type='hidden' name='user_id' value='<?php echo $_SESSION['connected_id']; ?>'>
                     <input type='hidden' name='author_id' value='<?php echo $post['author_id']; ?>'>
-                    <input type='submit' value="<?php $marequete = "SELECT * FROM likes WHERE user_id='$_SESSION[connected_id]' AND post_id='$post[postId]' ";
+                    <input type='submit' class="like" value="<?php $marequete = "SELECT * FROM likes WHERE user_id='$_SESSION[connected_id]' AND post_id='$post[postId]' ";
                             $reponse = $mysqli->query($marequete);
                             if (mysqli_num_rows($reponse) == 0) {
-                                echo"♡"; 
+                                echo "🤍"; 
                             }
                             else {
-                                echo"♥";
+                                echo "❤️";
                             }?>">
-                    <?php echo $post['like_number']; ?>
+                    <p><?php echo $post['like_number']; ?></p>
                 </form>
-            </small>
             <?php
             foreach (explode (",", $post['taglist']) as $label) { ?>
             <?php 

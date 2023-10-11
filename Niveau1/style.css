@@ -195,8 +195,20 @@ body>header #user:hover ul {
     text-align: right;
 }
 
-#wrapper main article footer small {
+#wrapper main article footer form {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    margin-bottom: -1em;
     float: left;
+    font-size: 1em;
+}
+
+#wrapper main article footer form .like {
+    font-size: 1.5em;
+    border:none;
+    background: none;
 }
 
 #wrapper.admin {
@@ -273,33 +285,18 @@ body>header #user:hover ul {
 }
 
 
-
-
 form dl dt {
     float: left;
     font-weight: bold;
     line-height: 1.5em;
 }
 
-form dl dd {
-    margin-left: 10em;
-    line-height: 1.5em;
-    margin-bottom: 1em
-}
 
 form dl dd textarea {
     width: 40em;
     height: 15em;
 }
 
-#like {
-    background: none;
-    border: none;
-}
-
-#like :hover {
-    background-color: blue
-}
 
 
 #wrapper .class main {
