@@ -67,9 +67,9 @@
             //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
             // echo "<pre>" . print_r($user, 1) . "</pre>";
             ?>
-            <?php if ($_SESSION['connected_id'] != "null") {
-                include('photoprofil.php');
-            } ?>
+            <?php
+            include('photoprofil.php');
+            ?>
             <section>
                 <h3>Présentation</h3>
                 <p>Sur cette page vous trouverez tous les message des utilisatrices
@@ -84,22 +84,26 @@
              * Etape 3: récupérer tous les messages des abonnements
              */
             $laQuestionEnSql = "
-                    SELECT posts.content,
-                    posts.created,
-                    users.alias as author_name,  
-                    users.id as author_id,
-                    count(likes.id) as like_number,  
-                    posts.id as postId,
-                    GROUP_CONCAT(DISTINCT tags.label) AS taglist 
-                    FROM followers 
-                    JOIN users ON users.id=followers.followed_user_id
-                    JOIN posts ON posts.user_id=users.id
-                    LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
-                    LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
-                    LEFT JOIN likes      ON likes.post_id  = posts.id 
-                    WHERE followers.following_user_id='$userId' 
-                    GROUP BY posts.id
-                    ORDER BY posts.created DESC  
+                SELECT posts.content,
+                posts.created,
+                users.alias as author_name,
+                users.id as author_id,
+                likes.like_count as like_number,
+                posts.id as postId,
+                GROUP_CONCAT(DISTINCT tags.label) AS taglist 
+                FROM followers 
+                JOIN users ON users.id=followers.followed_user_id
+                JOIN posts ON posts.user_id=users.id
+                LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
+                LEFT JOIN tags ON posts_tags.tag_id = tags.id 
+                LEFT JOIN (
+                SELECT post_id, COUNT(DISTINCT id) as like_count
+                FROM likes
+                GROUP BY post_id
+                ) as likes ON likes.post_id = posts.id
+                WHERE followers.following_user_id='$userId' 
+                GROUP BY posts.id
+                ORDER BY posts.created DESC;
                     ";
             $lesInformations = $mysqli->query($laQuestionEnSql);
             if (!$lesInformations) {
@@ -113,13 +117,15 @@
             include("post.php");
             ?>
         </main>
-        </div>
+
     <?php }
         ?>
+    </div>
+    <footer>
+        <?php include("footer.php"); ?>
+    </footer>
 </body>
 
-<footer>
-    <?php include("footer.php"); ?>
-</footer>
+
 
 </html>

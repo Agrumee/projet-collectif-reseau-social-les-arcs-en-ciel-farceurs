@@ -58,9 +58,9 @@
                 $user = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
                 ?>
-                <?php if ($_SESSION['connected_id'] != null) {
-                    include('photoprofil.php');
-                } ?>
+                <?php
+                include('photoprofil.php');
+                ?>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice :
