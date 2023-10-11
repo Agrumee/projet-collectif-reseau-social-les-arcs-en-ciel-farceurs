@@ -5,8 +5,6 @@
 
 <body>
     <?php include("header.php"); ?>
-
-
     <div id="wrapper">
 
         <?php if ($_SESSION["connected_id"] == null) {
