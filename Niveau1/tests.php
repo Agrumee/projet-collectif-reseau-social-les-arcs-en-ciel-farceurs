@@ -24,7 +24,7 @@ if ($_SESSION['connected_id'] != null && $userId != $_SESSION['connected_id'] &&
         <input type='hidden' name='followed_user_id' value="<?php echo $userId; ?>">
         <input type='hidden' name='following_user_id' value="<?php echo $_SESSION['connected_id']; ?>">
 
-        <input type='submit' value="S'abonner">
+        <input type='submit' id="désabonnement" value="S'abonner">
     </form>
 
 <?php }
@@ -47,7 +47,7 @@ if ($_SESSION['connected_id'] != null && $userId != $_SESSION['connected_id'] &&
         <input type='hidden' name='followed_user_id' value="<?php echo $userId; ?>">
         <input type='hidden' name='following_user_id' value="<?php echo $_SESSION['connected_id']; ?>">
 
-        <input type='submit' value="Se désabonner">
+        <input type='submit' id="désabonnement" value="Se désabonner">
     </form>
 
 <?php } ?>

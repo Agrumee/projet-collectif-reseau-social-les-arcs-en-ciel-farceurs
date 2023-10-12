@@ -157,7 +157,7 @@ body>header #user:hover ul {
     overflow-y: scroll;
     z-index: 1;
     margin-top: 1em;
-    margin-bottom: 5rem;
+    margin-bottom: 15rem;
 }
 
 #wrapper main article {
@@ -415,4 +415,13 @@ body>footer>nav>ul>li:first-child>a {
 
 body>footer>nav>ul>li:last-child>a {
     border-right: none;
+}
+
+#désabonnement{
+    background-color: rgb(165, 72, 232);
+    font-size: 1.5rem;
+    border-radius: 10px;
+    color:white;
+    border:none;
+    padding: 0.2em;
 }
