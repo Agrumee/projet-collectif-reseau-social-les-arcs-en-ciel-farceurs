@@ -10,7 +10,11 @@
 
         <?php if ($_SESSION["connected_id"] == null) {
             ?>
+
             <aside>
+                <div class='cropped'>
+                    <img src="deco.png" />
+                </div>
                 <section>
                     <h3>Présentation</h3>
                     <p>
@@ -27,16 +31,17 @@
                     <p><a href='registration.php'>Inscrivez-vous</a></p>
                 </article>
             </main>
-        <?php } else {
+        </div>
+    <?php } else {
             ?>
-            <aside>
-                <?php include("BDD.php"); ?>
+        <aside>
+            <?php include("BDD.php"); ?>
 
-                <?php include('photoprofil.php') ?>
-                <section>
-                    <h3>Présentation</h3>
+            <?php include('photoprofil.php') ?>
+            <section>
+                <h3>Présentation</h3>
 
-                    Sur cette page vous trouverez les informations de l'utilisatrice
+                <p>Sur cette page vous trouverez les informations de l'utilisatrice
                     n°
                     <?php
                     echo intval($_GET['user_id']);
@@ -44,32 +49,26 @@
                     // $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
                     // $lesInformations = $mysqli->query($laQuestionEnSql);
                     // $reponse = $lesInformations->fetch_assoc();
+                
+                    ?>
+                </p>
+            </section>
+        </aside>
+        <main>
+            <?php
+            /**
+             * Etape 1: Les paramètres concernent une utilisatrice en particulier
+             */
+            $userId = intval($_GET['user_id']);
 
-                    // echo "<pre>" . print_r($reponse['photo'], 1) . "</pre>";
-                    // ?>
-                </section>
-            </aside>
-            <main>
-                <?php
-                /**
-                 * Etape 1: Les paramètres concernent une utilisatrice en particulier
-                 * La première étape est donc de trouver quel est l'id de l'utilisatrice
-                 * Celui ci est indiqué en parametre GET de la page sous la forme user_id=...
-                 * Documentation : https://www.php.net/manual/fr/reserved.variables.get.php
-                 * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
-                 */
-                $userId = intval($_GET['user_id']);
+            /**
+             * Etape 2: se connecter à la base de donnée
+             */
 
-                /**
-                 * Etape 2: se connecter à la base de donnée
-                 */
-
-
-
-                /**
-                 * Etape 3: récupérer le nom de l'utilisateur
-                 */
-                $laQuestionEnSql = "
+            /**
+             * Etape 3: récupérer le nom de l'utilisateur
+             */
+            $laQuestionEnSql = "
                     SELECT users.*, 
                     count(DISTINCT posts.id) as totalpost, 
                     count(DISTINCT given.post_id) as totalgiven, 
@@ -81,47 +80,48 @@
                     WHERE users.id = '$userId' 
                     GROUP BY users.id
                     ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if (!$lesInformations) {
-                    echo ("Échec de la requete : " . $mysqli->error);
-                }
-                $user = $lesInformations->fetch_assoc();
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            if (!$lesInformations) {
+                echo ("Échec de la requete : " . $mysqli->error);
+            }
+            $user = $lesInformations->fetch_assoc();
 
-                /**
-                 * Etape 4: à vous de jouer
-                 */
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer les valeurs ci-après puiseffacer la ligne ci-dessous
-                ?>
-                <article class='parameters'>
-                    <h3>Mes paramètres</h3>
-                    <dl>
-                        <dt>Pseudo</dt>
-                        <dd>
-                            <?php echo ($user['alias']) ?>
-                        </dd>
-                        <dt>Email</dt>
-                        <dd>
-                            <?php echo ($user['email']) ?>
-                        </dd>
-                        <dt>Nombre de message</dt>
-                        <dd>
-                            <?php echo ($user['totalpost']) ?>
-                        </dd>
-                        <dt>Nombre de "J'aime" donnés </dt>
-                        <dd>
-                            <?php echo ($user['totalgiven']) ?>
-                        </dd>
-                        <dt>Nombre de "J'aime" reçus</dt>
-                        <dd>
-                            <?php echo ($user['totalrecieved']) ?>
-                        </dd>
-                    </dl>
 
-                </article>
-            </main>
+
+            ?>
+            <article class='parameters'>
+                <h3>Mes paramètres</h3>
+                <dl>
+                    <dt>Pseudo</dt>
+                    <dd>
+                        <?php echo ($user['alias']) ?>
+                    </dd>
+                    <dt>Email</dt>
+                    <dd>
+                        <?php echo ($user['email']) ?>
+                    </dd>
+                    <dt>Nombre de message</dt>
+                    <dd>
+                        <?php echo ($user['totalpost']) ?>
+                    </dd>
+                    <dt>Nombre de "J'aime" donnés </dt>
+                    <dd>
+                        <?php echo ($user['totalgiven']) ?>
+                    </dd>
+                    <dt>Nombre de "J'aime" reçus</dt>
+                    <dd>
+                        <?php echo ($user['totalrecieved']) ?>
+                    </dd>
+                </dl>
+
+            </article>
+        </main>
         </div>
     <?php }
         ?>
+    <footer>
+        <?php include("footer.php"); ?>
+    </footer>
 </body>
 
 </html>

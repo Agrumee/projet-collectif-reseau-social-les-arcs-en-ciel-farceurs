@@ -1,5 +1,6 @@
-<?php 
-error_reporting(E_ALL); ini_set("display_errors", 1); 
+<?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 ?>
 <?php
 while ($post = $lesInformations->fetch_assoc()) {
@@ -22,38 +23,37 @@ while ($post = $lesInformations->fetch_assoc()) {
             </p>
         </div>
         <footer>
-            <small>
-                <form method="post" action='like.php'>
-                    <input type='hidden' name='location'
-                        value='<?php echo ($_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']); ?>'>
-                    <input type='hidden' name='post_id' value='<?php echo $post['postId']; ?>'>
-                    <input type='hidden' name='user_id' value='<?php echo $_SESSION['connected_id']; ?>'>
-                    <input type='hidden' name='author_id' value='<?php echo $post['author_id']; ?>'>
-                    <input type='submit' value="<?php $marequete = "SELECT * FROM likes WHERE user_id='$_SESSION[connected_id]' AND post_id='$post[postId]' ";
-                            $reponse = $mysqli->query($marequete);
-                            if (mysqli_num_rows($reponse) == 0) {
-                                echo"♡"; 
-                            }
-                            else {
-                                echo"♥";
-                            }?>">
+            <form method="post" action='like.php'>
+                <input type='hidden' name='location'
+                    value='<?php echo ($_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']); ?>'>
+                <input type='hidden' name='post_id' value='<?php echo $post['postId']; ?>'>
+                <input type='hidden' name='user_id' value='<?php echo $_SESSION['connected_id']; ?>'>
+                <input type='hidden' name='author_id' value='<?php echo $post['author_id']; ?>'>
+                <input type='submit' class="like" value="<?php $marequete = "SELECT * FROM likes WHERE user_id='$_SESSION[connected_id]' AND post_id='$post[postId]' ";
+                $reponse = $mysqli->query($marequete);
+                if (mysqli_num_rows($reponse) == 0) {
+                    echo "🤍";
+                } else {
+                    echo "❤️";
+                } ?>">
+                <p>
                     <?php echo $post['like_number']; ?>
-                </form>
-            </small>
+                </p>
+            </form>
             <?php
-            foreach (explode (",", $post['taglist']) as $label) { ?>
-            <?php 
+            foreach (explode(",", $post['taglist']) as $label) { ?>
+                <?php
                 $marequete = "SELECT * FROM tags WHERE label='$label'";
                 $reponse = $mysqli->query($marequete);
                 $tag = $reponse->fetch_assoc();
-            ?>
-            <a href='tags.php?tag_id=<?php echo ($tag['id']) ?>'>
-                <?php 
-                if ($label != null) {
-                    echo("#" . $label); 
-                }
-                else echo("<br>")?>
-            </a>
+                ?>
+                <a href='tags.php?tag_id=<?php echo ($tag['id']) ?>'>
+                    <?php
+                    if ($label != null) {
+                        echo ("#" . $label);
+                    } else
+                        echo ("<br>") ?>
+                    </a>
             <?php } ?>
         </footer>
     </article>

@@ -1,5 +1,6 @@
-<?php 
-error_reporting(E_ALL); ini_set("display_errors", 1); 
+<?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 ?>
 <?php if ($userId == $_SESSION['connected_id']) {
     ?>
@@ -27,15 +28,38 @@ error_reporting(E_ALL); ini_set("display_errors", 1);
             if (!$ok) {
                 echo "Impossible d'ajouter le message: " . $mysqli->error;
             } else {
-                $postId = $mysqli->insert_id; // Récupère l'ID du post inséré
-                echo "$postId";
-    
-                // Vérifier les tags présents dans le message et ajouter des lignes à la table posts_tags en fonction
+                // Récupère l'ID du post inséré
+                $postId = $mysqli->insert_id;
+                // Découper le post en tableau
+                $postContentArray = explode(" ", $postContent);
+                // Chercher tous les tags présents dans le tableau généré et les stocker dans un nouveau tableau en supprimant la ponctuation accolée
+                $tagArray = [];
+                foreach ($postContentArray as $word) {
+                    if (substr($word, 0, 1) === "#") {
+                        $formatedWord = str_replace(array(',', ';', '!', ' ', '#'), '', $word);
+                        array_push($tagArray, $formatedWord);
+                    }
+                }
+                ;
+                // Récupérer la liste des tags existants
                 $sql = "SELECT * FROM tags";
-                $res = $mysqli->query($sql);
-                while ($tag = $res->fetch_assoc()) {
+                $result = $mysqli->query($sql);
+                while ($tag = mysqli_fetch_array($result)) {
+                    $existingTags[] = $tag['label'];
+                }
+
+                foreach ($tagArray as $postTag) {
+                    // si un tag n'existe pas, le créer.
+                    if (!in_array($postTag, $existingTags)) {
+                        $mysqli->query("INSERT INTO tags (id, label) VALUES (NULL, '$postTag')");
+                    }
+                }
+
+                // Récupérer la liste des tags existants
+                $sql = "SELECT * FROM tags";
+                $result = $mysqli->query($sql);
+                while ($tag = $result->fetch_assoc()) {
                     $tagLabel = '#' . $tag['label'];
-                    echo "$tagLabel";
                     // Vérifier si le tag est présent dans le contenu du message
                     if (strpos($postContent, $tagLabel) !== false) {
                         $insertSql = "INSERT INTO posts_tags (id, post_id, tag_id) VALUES (NULL, '$postId', '$tag[id]')";
