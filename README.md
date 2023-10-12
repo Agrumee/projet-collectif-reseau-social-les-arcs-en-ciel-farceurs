@@ -11,5 +11,5 @@ Les différentes fonctionalités misent en place sont les suivantes :
 - Gestion des "#tags"
 - Création de messages 
 
-![Alt La page profil personnel de l'utilisateur](page-profil-perso.png)        
-![Alt La page profil d'un autre utilisateur](page-user-profil.png)   
+![Alt La page profil personnel de l'utilisateur](page-profil-perso.png)  ![Alt La page profil d'un autre utilisateur](page-user-profil.png)         
+
