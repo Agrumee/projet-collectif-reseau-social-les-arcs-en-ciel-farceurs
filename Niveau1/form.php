@@ -39,7 +39,8 @@ ini_set("display_errors", 1);
                         $formatedWord = str_replace(array(',', ';', '!', ' ', '#'), '', $word);
                         array_push($tagArray, $formatedWord);
                     }
-                };
+                }
+                ;
                 // Récupérer la liste des tags existants
                 $sql = "SELECT * FROM tags";
                 $result = $mysqli->query($sql);

@@ -44,7 +44,7 @@ body>header div {
 }
 
 body>header img {
-    height: 20vw;
+    height: 10rem;
 }
 
 body>header #menu {
@@ -77,7 +77,7 @@ body>header #user>a {
     display: block;
     text-align: center;
     width: 100%;
-    font-size: 9vw
+    font-size: 5rem;
 }
 
 body>header #user ul {
@@ -143,8 +143,8 @@ body>header #user:hover ul {
     align-items: flex-start;
     position: absolute;
     margin-left: 2em;
-    font-size: 4vw;
-    width: 60vw;
+    font-size: 2rem;
+    width: 50rem;
 }
 
 #wrapper aside section p {
@@ -169,7 +169,7 @@ body>header #user:hover ul {
     height: auto;
     width: -moz-available;
     flex: 1;
-    font-size:5vw
+    font-size: 3rem;
 }
 
 #wrapper main article h3 {
@@ -425,5 +425,5 @@ body>footer>nav>ul>li:last-child>a {
     color: white;
     border: none;
     padding: 0.2em;
-    font-size:4vw
+    font-size:2rem
 }

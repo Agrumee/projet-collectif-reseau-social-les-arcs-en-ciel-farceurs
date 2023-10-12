@@ -50,8 +50,7 @@
                     // $lesInformations = $mysqli->query($laQuestionEnSql);
                     // $reponse = $lesInformations->fetch_assoc();
                 
-                    // echo "<pre>" . print_r($reponse['photo'], 1) . "</pre>";
-                    // ?>
+                    ?>
                 </p>
             </section>
         </aside>
@@ -59,18 +58,12 @@
             <?php
             /**
              * Etape 1: Les paramètres concernent une utilisatrice en particulier
-             * La première étape est donc de trouver quel est l'id de l'utilisatrice
-             * Celui ci est indiqué en parametre GET de la page sous la forme user_id=...
-             * Documentation : https://www.php.net/manual/fr/reserved.variables.get.php
-             * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
              */
             $userId = intval($_GET['user_id']);
 
             /**
              * Etape 2: se connecter à la base de donnée
              */
-
-
 
             /**
              * Etape 3: récupérer le nom de l'utilisateur
@@ -93,10 +86,8 @@
             }
             $user = $lesInformations->fetch_assoc();
 
-            /**
-             * Etape 4: à vous de jouer
-             */
-            //@todo: afficher le résultat de la ligne ci dessous, remplacer les valeurs ci-après puiseffacer la ligne ci-dessous
+
+
             ?>
             <article class='parameters'>
                 <h3>Mes paramètres</h3>

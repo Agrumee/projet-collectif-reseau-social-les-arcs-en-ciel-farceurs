@@ -11,7 +11,7 @@
 
             <aside>
                 <div class='cropped'>
-                    <img src="deco.png"/>
+                    <img src="deco.png" />
                 </div>
                 <section>
                     <h3>Présentation</h2>
@@ -64,8 +64,7 @@
                     GROUP BY users.id
                     ";
             $lesInformations = $mysqli->query($laQuestionEnSql);
-            // Etape 4: à vous de jouer
-            //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
+            // faire la boucle de parcours des abonnés et mettre les bonnes valeurs ci dessous 
             while ($users = $lesInformations->fetch_assoc()) {
                 ?>
                 <article>

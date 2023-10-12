@@ -29,9 +29,7 @@
                 $enCoursDeTraitement = isset($_POST['email']);
                 if ($enCoursDeTraitement) {
                     // on ne fait ce qui suit que si un formulaire a été soumis.
-                    // Etape 2: récupérer ce qu'il y a dans le formulaire @todo: c'est là que votre travaille se situe
-                    // observez le résultat de cette ligne de débug (vous l'effacerez ensuite)
-                    // et complétez le code ci dessous en remplaçant les ???
+                    // Etape 2: récupérer ce qu'il y a dans le formulaire
                     $new_email = $_POST['email'];
                     $new_alias = $_POST['pseudo'];
                     $new_passwd = $_POST['motpasse'];
@@ -65,7 +63,6 @@
                 }
                 ?>
                 <form action="registration.php" method="post">
-                    <!-- <input type='hidden'name='???' value='achanger'> -->
                     <dl>
                         <dt><label for='pseudo'>Pseudo</label></dt>
                         <dd><input type='text' name='pseudo'></dd>

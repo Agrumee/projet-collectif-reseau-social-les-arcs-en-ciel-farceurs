@@ -38,31 +38,20 @@
     <?php } else {
             ?>
 
-        <!-- /**
-         * Cette page est TRES similaire à wall.php. 
-         * Vous avez sensiblement à y faire la meme chose.
-         * Il y a un seul point qui change c'est la requete sql.
-         */
-        /**
-         * Etape 1: Le mur concerne un utilisateur en particulier
-         */ -->
+        <!-- Le mur concerne un utilisateur en particulier -->
         <?php $userId = intval($_GET['user_id']); ?>
 
-        <!-- /**
-            * Etape 2: se connecter à la base de donnée
-            */ -->
+        <!-- se connecter à la base de donnée -->
         <?php include("BDD.php"); ?>
 
         <aside>
             <?php
             /**
-             * Etape 3: récupérer le nom de l'utilisateur
+             * récupérer le nom de l'utilisateur
              */
             $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
             $lesInformations = $mysqli->query($laQuestionEnSql);
             $user = $lesInformations->fetch_assoc();
-            //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-            // echo "<pre>" . print_r($user, 1) . "</pre>";
             ?>
             <?php
             include('photoprofil.php');
@@ -78,7 +67,7 @@
         <main>
             <?php
             /**
-             * Etape 3: récupérer tous les messages des abonnements
+             * récupérer tous les messages des abonnements
              */
             $laQuestionEnSql = "
                 SELECT posts.content,
@@ -108,8 +97,7 @@
             }
 
             /**
-             * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-             * A vous de retrouver comment faire la boucle while de parcours...
+             *  Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
              */
             include("post.php");
             ?>
