@@ -20,7 +20,7 @@
                 <section>
                     <h3>Présentation</h3>
                     <p>
-                        Sur cette page vous trouverez tous les message de  </p>
+                        Sur cette page vous trouverez tous les message de </p>
                 </section>
             </aside>
 
