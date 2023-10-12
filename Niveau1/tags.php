@@ -9,10 +9,6 @@
     <div id="wrapper">
         <?php
         /**
-         * Cette page est similaire à wall.php ou feed.php 
-         * mais elle porte sur les mots-clés (tags)
-         */
-        /**
          * Etape 1: Le mur concerne un mot-clé en particulier
          */
         $tagId = intval($_GET['tag_id']);
@@ -25,13 +21,9 @@
 
         <aside>
             <?php
-            /**
-             * Etape 3: récupérer le nom du mot-clé
-             */
             $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
             $lesInformations = $mysqli->query($laQuestionEnSql);
             $tag = $lesInformations->fetch_assoc();
-            //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
             if ($_SESSION['connected_id'] != null) {
                 include('photoprofil.php');
             } else {
@@ -87,7 +79,7 @@
             }
 
             /**
-             * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+             * Etape 4: Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
              */
             include("post.php");
             ?>

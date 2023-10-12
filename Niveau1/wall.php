@@ -20,7 +20,7 @@
                 <section>
                     <h3>Présentation</h3>
                     <p>
-                        Sur cette page vous trouverez tous les message de  </p>
+                        Sur cette page vous trouverez tous les message de </p>
                 </section>
             </aside>
 
@@ -35,29 +35,23 @@
             </main>
         <?php } else {
             /**
-             * Cette page est TRES similaire à wall.php. 
-             * Vous avez sensiblement à y faire la meme chose.
-             * Il y a un seul point qui change c'est la requete sql.
-             */
-            /**
-             * Etape 1: Le mur concerne un utilisateur en particulier
+             * Le mur concerne un utilisateur en particulier
              */
 
 
             /**
-             * Etape 2: se connecter à la base de donnée
+             * se connecter à la base de donnée
              */
             include("BDD.php"); ?>
 
             <aside>
                 <?php
                 /**
-                 * Etape 3: récupérer le nom de l'utilisateur
+                 * récupérer le nom de l'utilisateur
                  */
                 $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $user = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
                 ?>
                 <?php
                 include('photoprofil.php');
@@ -76,7 +70,7 @@
                 <?php include("form.php") ?>
                 <?php
                 /**
-                 * Etape 3: récupérer tous les messages de l'utilisatrice
+                 * récupérer tous les messages de l'utilisatrice
                  */
                 $laQuestionEnSql = "
                     SELECT posts.content, posts.created, users.alias as author_name, users.id as author_id, posts.id as postId,
@@ -97,7 +91,7 @@
                 }
 
                 /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+                 * Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  */
                 include("post.php");
         } ?>

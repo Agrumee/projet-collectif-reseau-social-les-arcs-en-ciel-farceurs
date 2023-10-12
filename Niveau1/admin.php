@@ -6,7 +6,7 @@
 <body>
     <?php include("header.php"); ?>
 
-    <!--Etape 1 : Ouvrir une connexion avec la base de données -->
+    <!--Ouvrir une connexion avec la base de données -->
 
     <?php include("BDD.php");
 
@@ -20,7 +20,7 @@
             <h2>Mots-clés</h2>
             <?php
             /*
-             * Etape 2 : trouver tous les mots clés
+             * trouver tous les mots clés
              */
             $laQuestionEnSql = "SELECT * FROM `tags` LIMIT 50";
             $lesInformations = $mysqli->query($laQuestionEnSql);
@@ -31,11 +31,9 @@
             }
 
             /*
-             * Etape 3 : @todo : Afficher les mots clés en s'inspirant de ce qui a été fait dans news.php
-             * Attention à en pas oublier de modifier tag_id=321 avec l'id du mot dans le lien
+             * Afficher les mots clés en s'inspirant de ce qui a été fait dans news.php
              */
             while ($tag = $lesInformations->fetch_assoc()) {
-                // echo "<pre>" . print_r($tag, 1) . "</pre>";
                 ?>
                 <article>
                     <h3>
@@ -54,8 +52,7 @@
             <h2>Utilisatrices</h2>
             <?php
             /*
-             * Etape 4 : trouver tous les mots clés
-             * PS: on note que la connexion $mysqli à la base a été faite, pas besoin de la refaire.
+             * trouver tous les mots clés
              */
             $laQuestionEnSql = "SELECT * FROM `users` LIMIT 50";
             $lesInformations = $mysqli->query($laQuestionEnSql);
@@ -66,8 +63,7 @@
             }
 
             /*
-             * Etape 5 : @todo : Afficher les utilisatrices en s'inspirant de ce qui a été fait dans news.php
-             * Attention à en pas oublier de modifier dans le lien les "user_id=123" avec l'id de l'utilisatrice
+             * Afficher les utilisatrices en s'inspirant de ce qui a été fait dans news.php
              */
             while ($users = $lesInformations->fetch_assoc()) {
                 echo "<pre>" . print_r($tag, 1) . "</pre>";
